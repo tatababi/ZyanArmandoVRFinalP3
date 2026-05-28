@@ -4057,7 +4057,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079393118}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -4100,7 +4100,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1845632280}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -6891,6 +6891,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1926188700}
   m_SourcePrefab: {fileID: 100100000, guid: 0e2312d8c6ae59648bebbb86a5cd3ded, type: 3}
+--- !u!20 &1845632280 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3114320211592509913, guid: 0e2312d8c6ae59648bebbb86a5cd3ded, type: 3}
+  m_PrefabInstance: {fileID: 1845632279}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1854979472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8619810336792446185, guid: d2fdb08bf4ada3a468116aa81d86bba8, type: 3}
