@@ -2,97 +2,54 @@ using UnityEngine;
 
 public class OvalOfficeVRMenu : MonoBehaviour
 {
-    [Header("Menu Panels")]
-    [SerializeField] private GameObject menuRoot;
+    [Header("Screens")]
+    [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject infoPanel;
-    [SerializeField] private GameObject labelsRoot;
 
     [Header("Player Reset")]
     [SerializeField] private Transform xrOrigin;
     [SerializeField] private Transform resetPoint;
 
-    [Header("Lighting")]
-    [SerializeField] private Light[] roomLights;
+    [Header("Audio")]
+    [SerializeField] private AudioSource uiAudio;
+    [SerializeField] private AudioClip buttonClickSound;
 
-    public void OpenMenu()
+    public void ShowMenu()
     {
-        SetActive(menuRoot, true);
+        PlayClickSound();
+        menuPanel.SetActive(true);
+        infoPanel.SetActive(false);
+    }
+
+    public void ShowInfo()
+    {
+        PlayClickSound();
+        menuPanel.SetActive(false);
+        infoPanel.SetActive(true);
     }
 
     public void CloseMenu()
     {
-        SetActive(menuRoot, false);
-    }
-
-    public void ToggleMenu()
-    {
-        if (menuRoot == null)
-        {
-            return;
-        }
-
-        menuRoot.SetActive(!menuRoot.activeSelf);
-    }
-
-    public void ToggleInfoPanel()
-    {
-        ToggleObject(infoPanel);
-    }
-
-    public void ToggleLabels()
-    {
-        ToggleObject(labelsRoot);
-    }
-
-    public void ToggleLights()
-    {
-        if (roomLights == null || roomLights.Length == 0)
-        {
-            return;
-        }
-
-        bool shouldTurnOn = false;
-        foreach (Light roomLight in roomLights)
-        {
-            if (roomLight != null && !roomLight.enabled)
-            {
-                shouldTurnOn = true;
-                break;
-            }
-        }
-
-        foreach (Light roomLight in roomLights)
-        {
-            if (roomLight != null)
-            {
-                roomLight.enabled = shouldTurnOn;
-            }
-        }
+        PlayClickSound();
+        menuPanel.SetActive(false);
+        infoPanel.SetActive(false);
     }
 
     public void ResetPlayerPosition()
     {
-        if (xrOrigin == null || resetPoint == null)
-        {
-            return;
-        }
+        PlayClickSound();
 
-        xrOrigin.SetPositionAndRotation(resetPoint.position, resetPoint.rotation);
-    }
-
-    private static void ToggleObject(GameObject target)
-    {
-        if (target != null)
+        if (xrOrigin != null && resetPoint != null)
         {
-            target.SetActive(!target.activeSelf);
+            xrOrigin.SetPositionAndRotation(resetPoint.position, resetPoint.rotation);
         }
     }
 
-    private static void SetActive(GameObject target, bool isActive)
+    public void PlayClickSound()
     {
-        if (target != null)
+        if (uiAudio != null && buttonClickSound != null)
         {
-            target.SetActive(isActive);
+            uiAudio.PlayOneShot(buttonClickSound);
         }
     }
 }
